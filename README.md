@@ -55,7 +55,7 @@ The project structure is organized as follows:
 
 ### Tasks
  
-1. In the React app, create an API service class that implements `IApiService` in `app/types.ts` using an HTTP client of your choice (axios, fetch, etc...). 
+1. In the React app, create an `ApiService` javascript class that implements `IApiService` in `app/types.ts`, using an HTTP client of your choice (axios, fetch, etc...). 
 2. Implement the `getReports` method by making a GET request to `/api/reports` 
 3. Based on the response, create a Typescript definition for a `Report`. Update the interface and API service to use this new type
 5. Implement error handling for non-200 API responses
