@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import viteReact from '@vitejs/plugin-react'
 import devServer from '@hono/vite-dev-server'
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
-import pages from '@hono/vite-cloudflare-pages'
 import { getPlatformProxy } from 'wrangler'
 import path from 'path'
 
@@ -45,9 +44,6 @@ export default defineConfig(async ({ mode }) => {
 
     return {
       plugins: [
-        pages({
-          entry: ['app/api/index.tsx'],
-        }),
         devServerPlugin,
       ],
       resolve,

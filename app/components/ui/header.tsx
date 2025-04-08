@@ -61,7 +61,7 @@ const Header = ({ logo }: HeaderProps) => {
                 size={16}
               />
             </div>
-            <a href="https://github.com/laiso/hono-spa-react/issues">
+            <a href="https://github.com/echoasi/reports-assessment-hono-react/issues">
               <Button variant="ghost" size="sm" className="ml-2">
                 Feedback
                 <ExternalLink className="pl-1 text-gray-400" size={16} />

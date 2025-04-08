@@ -1,48 +1,49 @@
-# Reports App
+# Tech Assessment - Reports App - Hono/React
 
 This project is composed with the following dependencies:
 
-- **React:** The front-end framework for building dynamic user interfaces.
-- **TypeScript:** A superset of JavaScript that adds optional static typing for improved code quality.
-- **Vite:** A fast development server and build tool for modern web development.
-- **Hono:** A lightweight, minimal and fast serverless web framework for Deno and Cloudflare Workers.
-- **TanStack Router:** A performant and powerful routing library for React.
+- **[Node](https://nodejs.org)**
+- **[React](https://react.dev/)**
+- **[TanStack Router](https://tanstack.com/router/latest/docs/framework/react/overview)**
+- **[Tailwind CSS](https://tailwindcss.com/)**
+- **[Hono](https://hono.dev/)**
+- **[TypeScript](https://www.typescriptlang.org/)**
+- **[Vite](https://vite.dev/)**
 
 ## Project Structure
 
 The project structure is organized as follows:
 
 - **`app/`**: Contains the source code for both the client and the API.
-  - **`api/`**: Hono API code (`app/api/index.tsx`)
-  - **`main.tsx`**: Entry point for the React application (`app/main.tsx`)
-  - **`routes/`**: React Router routes (e.g., `app/routes/__root.tsx`, `app/routes/about.lazy.tsx`, `app/routes/index.lazy.tsx`)
-  - **`style.css`**: Tailwind CSS stylesheet (`app/style.css`)
-  - **`components/`**: React components (e.g., `app/components/notion-like-editor.tsx`)
-- **`vite.config.ts`**: Vite configuration file (`vite.config.ts`)
-- **`tailwind.config.js`**: Tailwind CSS configuration file (`tailwind.config.js`)
-- **`tsconfig.app.json`**: TypeScript configuration file for the application (`tsconfig.app.json`)
-- **`tsconfig.json`**: TypeScript configuration file for the entire project (`tsconfig.json`)
-- **`tsconfig.node.json`**: TypeScript configuration file for Node.js (`tsconfig.node.json`)
-- **`package.json`**: Project dependencies and scripts (`package.json`)
-- **`_routes.json`**: Hono routes configuration for Cloudflare Pages (`_routes.json`)
-- **`index.html`**: HTML template for the React application (`index.html`)
-- **`README.md`**: This file! (`README.md`)
-- **`LICENSE`**: MIT license (`LICENSE`)
+  - **`api/`**: Hono API code
+  - **`main.tsx`**: Entry point for the React application
+  - **`routes/`**: React Router routes (e.g., `app/routes/__root.tsx`, `app/routes/reports.lazy.tsx`, `app/routes/index.lazy.tsx`)
+  - **`style.css`**: Tailwind CSS stylesheet
+  - **`components/`**: React components (e.g., `app/components/button.tsx`)
+- **`vite.config.ts`**: Vite configuration file
+- **`tailwind.config.js`**: Tailwind CSS configuration file 
+- **`_routes.json`**: Hono routes configuration
+- **`index.html`**: HTML template for the React application
+- **`README.md`**: This file!
 
-## Setup and Development
+## Instructions
 
-1. **Clone the repository:**
+### Setup and Development
+
+1. **Fork this repository**
+
+2. **Clone the repository:**
    ```bash
-   git clone https://github.com/laiso/hono-spa-react.git
-   cd hono-spa-react
+   git clone {{ Your repository URL }}
+   cd reports-assessment-hono-react
    ```
 
-2. **Install dependencies:**
+3. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Start development server:**
+4. **Start development server:**
    ```bash
    npm run dev
    ```
@@ -51,33 +52,30 @@ The project structure is organized as follows:
    - **Client:** Runs on `http://localhost:5173/` and serves the React application.
    - **API:** Runs on `http://localhost:3000/api` and serves the Hono API.
 
-4. **Build for production:**
-   ```bash
-   npm run build
-   ```
 
-   This will generate optimized build artifacts in the `dist` directory.
-
-## Instructions
-
-1. Create an API service using the HTTP client of your choice.
-2. Using the API client, create a method that makes a GET request to `/api/reports` 
-3. Based on the response, create a Typescript definition for a `Report`
-4. Update the API client method to have a strongly-typed response
+### Tasks
+ 
+1. In the React app, create an API service class that implements `IApiService` in `app/types.ts` using an HTTP client of your choice (axios, fetch, etc...). 
+2. Implement the `getReports` method by making a GET request to `/api/reports` 
+3. Based on the response, create a Typescript definition for a `Report`. Update the interface and API service to use this new type
 5. Implement error handling for non-200 API responses
-6. Create a table component to with a strongly-typed `reports` prop to display the reports
-7. Create an error component with an error message prop
-8. Add the table to the Home page. Filter and display _only_ reports created within the past two weeks
-9. Add the table to the Reports page. Display _all_ reports, sorted by most recent.
-10. Display the error component if the request fails
-11. Create an API endpoint that returns a single report from `/reports/{{reportId}}`
-12. Add a button to each Report table row that makes an API request to this route using the respective report's ID
+6. Add logic to the Home and Reports pages to make the API request when each page mounts
+7. Create a `ReportsTable` component with a strongly-typed `reports` array prop. Display the reports in an HTML table, styled however you like
+8. Create an `ErrorMessage` with a `message` prop
+9. If the request succeeds, show the `ReportsTable` component. If the request fails, show the `ErrorMessage` component
+10. On the Home page, filter and display reports created _within the past two weeks_, sorted by most recent
+11. On the Reports page, display _all_ reports, sorted by most recent
+13. Create an API endpoint at `/api/reports/{{reportId}}` the finds a single report by the given ID and returns it as JSON
+14. Add a method to the API service called `getReport` that takes a `reportId` argument and makes a GET request to `/api/reports/{{reportId}}` 
+15. Add a button to each Report table row that, when clicked, makes an API request to this endpoint with that respective report's ID. Display the report separately, below the table
+16. Commit your changes and make a Pull Request to the origin repo (https://github.com/echoasi/reports-assessment-hono-react)
 
-### Bonus
-- Create a "Loading" component that and display it while an API call is in progress
+### Bonus Tasks
+- Create a "Loading" component and display it while an API call is in progress
 - Implement pagination on the reports table component
 - Implement column sorting on the reports table component
-- Create a report details page with the route `/reports/{{reportId}}`
+- Create a report details route/page with the route `/reports/{{reportId}}`
+  - On the `ReportsTable` component, change the report details button into a link to this page for each respective report
   - Load the report from the API when this component mounts
   - Display the report details, styled however you like
   - Display an error to the user if the request fails
